@@ -1,0 +1,33 @@
+[
+  {
+    "id": "t1",
+    "category": "Plastique",
+    "title": "Écrasez les bouteilles",
+    "body": "Écrasez les bouteilles en plastique pour gagner de la place dans le bac.",
+    "tags": [
+      "bouteille",
+      "plastique",
+      "recyclage"
+    ]
+  },
+  {
+    "id": "t2",
+    "category": "Verre",
+    "title": "Retirez les bouchons",
+    "body": "Retirez les bouchons en métal ou plastique avant de déposer le verre.",
+    "tags": [
+      "verre",
+      "tri"
+    ]
+  },
+  {
+    "id": "t3",
+    "category": "Papier",
+    "title": "Évitez le papier gras",
+    "body": "Le papier souillé de graisse ou d’huile n’est pas recyclable.",
+    "tags": [
+      "papier",
+      "carton"
+    ]
+  }
+]

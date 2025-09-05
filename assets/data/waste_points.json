@@ -1,0 +1,22 @@
+[
+  {
+    "id": "wp1",
+    "name": "Bac Plastique - Marché Central",
+    "lat": 12.3719,
+    "lng": -1.5196,
+    "type": "bin",
+    "address": "Marché Central, Ouagadougou",
+    "accepts": "Plastique, canettes",
+    "hours": "06:00 - 20:00"
+  },
+  {
+    "id": "wp2",
+    "name": "Centre de Tri - Zone du Bois",
+    "lat": 12.3605,
+    "lng": -1.5123,
+    "type": "center",
+    "address": "Zone du Bois, Ouagadougou",
+    "accepts": "Plastique, papier, verre",
+    "hours": "08:00 - 18:00"
+  }
+]
