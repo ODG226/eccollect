@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:ecocollect/src/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../services/auth_service.dart';
@@ -53,10 +54,15 @@ class _OnboardingLoginScreenState extends State<OnboardingLoginScreen> {
   Future<void> _submit() async {
     setState(() { _busy = true; _error = null; });
     try {
-      if (_loginMode) {
+      if (_loginMode) 
+      {
         await AuthService.instance.signIn(email: _email.text.trim(), password: _pass.text);
-      } else {
-        if (_name.text.trim().isEmpty) {
+        context.routerDelegate.go(AppRoute.dashboard);
+      } 
+      else 
+      {
+        if (_name.text.trim().isEmpty) 
+        {
           throw FirebaseAuthException(code: 'empty-name', message: 'Nom requis');
         }
         await AuthService.instance.signUp(
@@ -64,11 +70,12 @@ class _OnboardingLoginScreenState extends State<OnboardingLoginScreen> {
           password: _pass.text,
           displayName: _name.text.trim(),
         );
+        context.routerDelegate.go(AppRoute.dashboard);
       }
       if (!mounted) return;
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const DashboardScreen()));
+      //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) => const DashboardScreen()));
       // OU si tu utilises ton routeur custom:
-      // context.routerDelegate.go(AppRoute.dashboard);
+      
     } on FirebaseAuthException catch (e) {
       setState(() { _error = e.message ?? 'Erreur de connexion'; });
     } catch (e) {

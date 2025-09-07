@@ -1,3 +1,4 @@
+import 'package:ecocollect/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import '../router/app_router.dart';
 import '../services/local_data_service.dart';
@@ -14,12 +15,36 @@ class DashboardScreen extends StatelessWidget {
     final next = events.where((e) => e.date.isAfter(DateTime.now())).toList();
     final txt = next.isEmpty ? "Aucune collecte à venir" : "Prochain passage: ${next.first.wasteType} • ${next.first.date}";
 
+    void _logout() async 
+    {
+      showDialog(context: context, builder: (context) => AlertDialog(
+        title: const Text('Déconnexion'),
+        content: const Text('Êtes-vous sûr de vouloir vous déconnecter ?'),
+        actions: [
+          TextButton(onPressed: () => Navigator.of(context).pop(), child: const Text('Annuler')),
+          TextButton(onPressed: () async 
+          {
+            Navigator.of(context).pop();
+            await AuthService.instance.signOut();
+            delegate.go(AppRoute.onboardingLogin);
+          }, child: const Text('Déconnexion')),
+        ],
+      ));
+    }
+
     return Scaffold(
       appBar: 
       AppBar(
+        leading: Container(),
         title: const Text('Tableau de bord'),
         titleTextStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         backgroundColor: Colors.green[700],
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white,),
+            tooltip: 'Déconnexion',
+            onPressed: () {_logout();})
+            ],
         ),
       body: SafeArea(
         child: SingleChildScrollView(

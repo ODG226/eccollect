@@ -1,3 +1,4 @@
+import 'package:ecocollect/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +16,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _notif = true;
   String _theme = 'system';
   String? _email;
+  String? _id;
 
   @override
   void initState() {
@@ -27,10 +29,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {
       _name.text = prefs.getString('name') ?? '';
       _address.text = prefs.getString('address') ?? '';
-      _quarter.text = prefs.getString('quarter') ?? '';
+      _quarter.text = prefs.getString('sector') ?? '';
       _notif = prefs.getBool('notif') ?? true;
       _theme = prefs.getString('theme') ?? 'system';
       _email = prefs.getString('email');
+      _id = prefs.getString('id');
     });
   }
 
@@ -38,11 +41,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('name', _name.text);
     await prefs.setString('address', _address.text);
-    await prefs.setString('quarter', _quarter.text);
+    await prefs.setString('sector', _quarter.text);
     await prefs.setBool('notif', _notif);
     await prefs.setString('theme', _theme);
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Préférences enregistrées')));
+      try
+      {
+        if(_id==null) throw Exception("Aucun utilisateur connecté");
+        await AuthService.instance.updateProfile(
+          displayName: _name.text,
+          address: _address.text,
+          sector: _quarter.text,
+          notif: _notif,
+          theme: _theme,
+          id: _id!
+        );
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Préférences enregistrées')));
+      }
+      catch(e)
+      {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Erreur: $e')));
+      }
     }
   }
 
@@ -50,6 +69,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('email');
     await prefs.remove('password');
+    await prefs.remove('id');
+    await prefs.remove('name');
+    await prefs.remove('address');
+    await prefs.remove('sector');
+    await prefs.remove('notif');
     setState(() => _email = null);
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Compte supprimé')));

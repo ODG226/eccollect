@@ -1,3 +1,5 @@
+import 'package:ecocollect/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'src/theme/app_theme.dart';
@@ -8,7 +10,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // 🔥 Initialisation Firebase
-//  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
 
   await DataService.instance.loadAll();
 

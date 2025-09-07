@@ -1,8 +1,10 @@
+import 'dart:convert';
+
 class WastePoint {
   final String id;
   final String name;
   final double lat;
-  final double lng;
+  final double long;
   final String type; // bin, center
   final String address;
   final String accepts; // plastics, paper, etc.
@@ -12,7 +14,7 @@ class WastePoint {
     required this.id,
     required this.name,
     required this.lat,
-    required this.lng,
+    required this.long,
     required this.type,
     required this.address,
     required this.accepts,
@@ -23,7 +25,7 @@ class WastePoint {
     id: m['id'] ?? '',
     name: m['name'] ?? 'Point',
     lat: (m['lat'] ?? 0).toDouble(),
-    lng: (m['lng'] ?? 0).toDouble(),
+    long: (m['long'] ?? 0).toDouble(),
     type: m['type'] ?? 'bin',
     address: m['address'] ?? '',
     accepts: m['accepts'] ?? '',
@@ -34,10 +36,16 @@ class WastePoint {
     'id': id,
     'name': name,
     'lat': lat,
-    'lng': lng,
+    'long': long,
     'type': type,
     'address': address,
     'accepts': accepts,
     'hours': hours,
   };
+
+  @override
+  String toString()
+  {
+    return jsonEncode(toMap());
+  }
 }
