@@ -1,9 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecocollect/src/models/waste_point.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../models/app_user.dart'; // adapte le chemin selon ton projet
 
 class WastePointService {
   final CollectionReference pointRef = FirebaseFirestore.instance.collection("point");
@@ -31,7 +28,7 @@ class WastePointService {
       }
   
     }
-    catch(e, s)
+    catch(e)
     {
       throw Exception(e);
     }
