@@ -13,8 +13,8 @@ class UserService {
   /// se connecter
   Future<void> signIn(String email, String password) async 
   {
-    var _user = await usersRef.get();
-    var matchedUser = _user.docs.where((doc) => doc['email'] == email && doc['password'] == password);
+    var user = await usersRef.get();
+    var matchedUser = user.docs.where((doc) => doc['email'] == email && doc['password'] == password);
     if (matchedUser.isNotEmpty) 
     {
       var prefs = await SharedPreferences.getInstance();

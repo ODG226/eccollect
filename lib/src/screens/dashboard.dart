@@ -15,7 +15,7 @@ class DashboardScreen extends StatelessWidget {
     final next = events.where((e) => e.date.isAfter(DateTime.now())).toList();
     final txt = next.isEmpty ? "Aucune collecte à venir" : "Prochain passage: ${next.first.wasteType} • ${next.first.date}";
 
-    void _logout() async 
+    void logout() async 
     {
       showDialog(context: context, builder: (context) => AlertDialog(
         title: const Text('Déconnexion'),
@@ -43,7 +43,7 @@ class DashboardScreen extends StatelessWidget {
           IconButton(
             icon: const Icon(Icons.logout, color: Colors.white,),
             tooltip: 'Déconnexion',
-            onPressed: () {_logout();})
+            onPressed: () {logout();})
             ],
         ),
       body: SafeArea(

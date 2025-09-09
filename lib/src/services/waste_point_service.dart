@@ -11,8 +11,8 @@ class WastePointService {
   var lat = geolocation.latitude;
   var long = geolocation.longitude;
     var data = {"id":id, "lat": lat, "long":long};
-    var _setPoints = await pointRef.get();
-    var matchedPoints = _setPoints.docs.where((item)=>item["id"]==id);
+    var setPoints = await pointRef.get();
+    var matchedPoints = setPoints.docs.where((item)=>item["id"]==id);
     try
     {
       // si la liste est vide on ajoute le nouvel element
@@ -36,7 +36,7 @@ class WastePointService {
 
   /// Récupère la liste des points de collecte
   Future<List<WastePoint>> fetchWastePoints() async {
-    var _setPoints = await pointRef.get();
-    return _setPoints.docs.map((doc) => WastePoint.fromMap(doc.data() as Map<String, dynamic>)).toList();
+    var setPoints = await pointRef.get();
+    return setPoints.docs.map((doc) => WastePoint.fromMap(doc.data() as Map<String, dynamic>)).toList();
   }
 }
