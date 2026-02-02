@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rrule/rrule.dart';
-import 'package:table_calendar/table_calendar.dart';
-import '../services/local_data_service.dart';
-import '../models/collection_event.dart';
 import 'package:flutter_neat_and_clean_calendar/flutter_neat_and_clean_calendar.dart';
 
 class CalendarScreen extends StatefulWidget {
