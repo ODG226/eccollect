@@ -20,7 +20,7 @@ final rrule = RecurrenceRule(
   interval: 1,
   byWeekDays: [
     ByWeekDayEntry(DateTime.tuesday),
-    ByWeekDayEntry(DateTime.thursday),
+    ByWeekDayEntry(DateTime.friday),
   ],
 );
 
