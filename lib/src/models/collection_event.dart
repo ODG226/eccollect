@@ -15,7 +15,10 @@ class CollectionEvent {
 
   factory CollectionEvent.fromMap(Map<String, dynamic> m) => CollectionEvent(
     id: m['id'] ?? '',
-    date: DateTime.parse(m['date']),
+    // date: DateTime.parse(m['date']).add(  Duration(
+    date: DateTime.now().add(  Duration(
+      hours: 24*7 ,
+    )),
     wasteType: m['wasteType'] ?? 'Plastique',
     quarter: m['quarter'] ?? '',
     notes: m['notes'] ?? '',

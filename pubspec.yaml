@@ -47,6 +47,8 @@ dependencies:
   firebase_core: ^3.6.0
   firebase_auth: ^5.3.1
   cloud_firestore: ^5.4.4
+  flutter_neat_and_clean_calendar: ^0.4.16
+  rrule: ^0.2.18
   # Autres
 shared_preferences: ^2.2.3
 

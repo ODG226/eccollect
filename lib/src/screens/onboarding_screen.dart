@@ -91,7 +91,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           if (_pageIndex != pages.length - 1)
             TextButton(
               onPressed: (){
-               context.routerDelegate.go(AppRoute.onboardingLogin);
+               context.routerDelegate.go(AppRoute.dashboard);
               },
               child: const Text(
                 "Passer",
@@ -126,7 +126,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       const SizedBox(height: 30),
                       FilledButton(
                         onPressed: (){
-                            context.routerDelegate.go(AppRoute.onboardingLogin);
+                            context.routerDelegate.go(AppRoute.dashboard);
                           },
                         child: const Text("Commencer"),
                       )
